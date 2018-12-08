@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BibliotecaXamarin.NewAuthorPage"
+             xmlns:local="clr-namespace:BibliotecaXamarin.Model">
+
+    <ContentPage.BindingContext>
+        <!-- Cria uma instância de AuthorsViewModel que, quando invocar o evento
+            RequestFailed, vai chamar o método Handle_RequestFailed da página.
+            Não pode esquecer de colocar o trecho xmlns:local ali em cima. -->
+        <local:NewAuthorViewModel RequestFailed="Handle_RequestFailed" AuthorAdded="Handle_AuthorAdded" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Horizontal">
+                <Entry 
+                x:Name="NameAuthor"
+                Placeholder="Digite nome do autor"
+                       HorizontalOptions="FillAndExpand" />
+                <Button Text="Inserir" 
+                    Command="{Binding PostCommand}"
+                    CommandParameter="{Binding Text, Source={Reference NameAuthor}}" />
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
